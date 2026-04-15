@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate · San Gorgonio Pass Historical Society</title>
+  <meta name="description" content="Support the San Gorgonio Pass Historical Society and help preserve the history of Banning, Beaumont, Cabazon, Cherry Valley, and San Timoteo Canyon.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0f0c09;
+      --bg-surface:   #1a1510;
+      --bg-card:      #221c14;
+      --bg-card-2:    #2a2318;
+      --text:         #ede1ca;
+      --text-muted:   #8a7c6a;
+      --text-faint:   #4a4035;
+      --accent:       #c8912a;
+      --accent-light: #e2b45e;
+      --accent-faint: rgba(200, 145, 42, 0.12);
+      --rule:         #342a1e;
+      --rule-accent:  rgba(200, 145, 42, 0.35);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-label:   'Cinzel', 'Times New Roman', serif;
+      --font-body:    'EB Garamond', Georgia, serif;
+    }
+
+    html.light {
+      --bg:           #f5ede0;
+      --bg-surface:   #ede1ce;
+      --bg-card:      #e6d4b8;
+      --bg-card-2:    #ddc9a8;
+      --text:         #1a1208;
+      --text-muted:   #5a4830;
+      --text-faint:   #a89070;
+      --accent:       #8b5a14;
+      --accent-light: #a87030;
+      --accent-faint: rgba(139, 90, 20, 0.1);
+      --rule:         #cdb898;
+      --rule-accent:  rgba(139, 90, 20, 0.3);
+    }
+    html.light body::before { opacity: 0.2; }
+    html.light .site-nav { background: rgba(245, 237, 224, 0.94); }
+    html.light .page-hero::after {
+      background: linear-gradient(to bottom, rgba(245,237,224,0.0) 50%, var(--bg) 100%);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* grain */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.45;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      background: rgba(15, 12, 9, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-brand {
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-label);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent-light); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-facebook {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-label);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-facebook:hover { color: var(--accent-light); }
+    .nav-facebook svg { width: 14px; height: 14px; fill: currentColor; }
+
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--rule-accent);
+      color: var(--text-muted);
+      cursor: pointer;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .theme-toggle svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    html.light .icon-sun { display: block; }
+    html.light .icon-moon { display: none; }
+
+    .btn {
+      font-family: var(--font-label);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.75rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--accent); color: var(--bg); }
+    .btn-primary:hover { background: var(--accent-light); }
+    .btn-secondary { border: 1px solid var(--rule-accent); color: var(--text-muted); background: none; }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── Page hero ── */
+    .page-hero {
+      position: relative;
+      padding-top: 60px;
+      min-height: 52vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://img1.wsimg.com/isteam/ip/d7a1e7b1-0c5a-4805-9a4b-a6013d889e64/blob-59698a2.png/:/rs=w:1400,cg:true');
+      background-size: cover;
+      background-position: center 30%;
+      filter: sepia(50%) contrast(0.85) brightness(0.55);
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 12, 9, 0.35) 0%,
+        rgba(15, 12, 9, 0.92) 100%
+      );
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+      max-width: 900px;
+    }
+
+    .page-hero-label {
+      font-family: var(--font-label);
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      color: var(--accent);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero-title {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1.0;
+      color: var(--text);
+    }
+
+    .page-hero-title em {
+      font-style: italic;
+      color: var(--accent-light);
+    }
+
+    .page-hero-sub {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: rgba(237, 225, 202, 0.7);
+      margin-top: 1.25rem;
+      max-width: 520px;
+      line-height: 1.6;
+    }
+
+    /* ── Main content ── */
+    .page-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .donate-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    /* ── Left: Amount selector ── */
+    .donate-form-section { }
+
+    .form-label {
+      font-family: var(--font-label);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+
+    .amount-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .amount-btn {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      padding: 1rem 0.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      line-height: 1;
+    }
+    .amount-btn span {
+      display: block;
+      font-family: var(--font-label);
+      font-size: 0.52rem;
+      letter-spacing: 0.15em;
+      color: var(--text-faint);
+      margin-top: 0.3rem;
+      text-transform: uppercase;
+    }
+    .amount-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+    .amount-btn.active {
+      border-color: var(--accent);
+      background: var(--accent-faint);
+      color: var(--accent);
+    }
+    .amount-btn.active span { color: var(--accent); opacity: 0.7; }
+
+    .custom-amount-wrap {
+      display: flex;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      margin-bottom: 2rem;
+      transition: border-color 0.2s;
+    }
+    .custom-amount-wrap:focus-within {
+      border-color: var(--accent);
+    }
+
+    .custom-amount-prefix {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      padding: 0.75rem 0 0.75rem 1.25rem;
+      line-height: 1;
+    }
+
+    .custom-amount-input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--text);
+      padding: 0.75rem 1.25rem 0.75rem 0.5rem;
+      width: 100%;
+    }
+    .custom-amount-input::placeholder { color: var(--text-faint); }
+
+    /* Frequency toggle */
+    .frequency-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 2.5rem;
+    }
+
+    .freq-btn {
+      font-family: var(--font-label);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.25rem;
+      border: 1px solid var(--rule);
+      background: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .freq-btn.active {
+      border-color: var(--accent);
+      background: var(--accent-faint);
+      color: var(--accent);
+    }
+    .freq-btn:hover:not(.active) {
+      border-color: var(--text-faint);
+      color: var(--text-muted);
+    }
+
+    /* Payment methods */
+    .payment-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .payment-method {
+      background: var(--bg-card);
+      border: 1px solid var(--rule);
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .payment-method:hover { border-color: var(--rule-accent); }
+    .payment-method.active { border-color: var(--accent); }
+
+    .payment-method-radio {
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--text-faint);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .payment-method.active .payment-method-radio {
+      border-color: var(--accent);
+    }
+    .payment-method.active .payment-method-radio::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .payment-method-label {
+      font-family: var(--font-label);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--text);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .payment-method-desc {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Mail section (shown when check is selected) */
+    .mail-instructions {
+      background: var(--bg-surface);
+      border: 1px solid var(--rule-accent);
+      border-left: 3px solid var(--accent);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2rem;
+      display: none;
+    }
+    .mail-instructions.visible { display: block; }
+    .mail-address {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.7;
+      margin-top: 0.5rem;
+    }
+
+    /* Online placeholder */
+    .online-placeholder {
+      background: var(--bg-surface);
+      border: 1px solid var(--rule);
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      display: none;
+    }
+    .online-placeholder.visible { display: block; }
+    .online-placeholder p {
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .donate-submit {
+      width: 100%;
+      padding: 1.1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+    }
+
+    /* ── Right: Impact sidebar ── */
+    .donate-sidebar { }
+
+    .sidebar-block {
+      background: var(--bg-card);
+      padding: 2rem;
+      margin-bottom: 2px;
+    }
+
+    .sidebar-block-label {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar-block-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .sidebar-block-text {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .impact-list {
+      list-style: none;
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .impact-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.85rem;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .impact-amount {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--accent);
+      flex-shrink: 0;
+      min-width: 2.5rem;
+      line-height: 1;
+    }
+
+    /* Quote block */
+    .quote-block {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: clamp(3rem, 5vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+      text-align: center;
+      margin: 0;
+    }
+
+    .quote-mark {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      line-height: 0.5;
+      color: var(--accent);
+      opacity: 0.4;
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    .quote-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text);
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+
+    .quote-attr {
+      font-family: var(--font-label);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-top: 1.5rem;
+      display: block;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+      padding: 2.5rem clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-text {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      color: var(--text-faint);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* fade-in */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 860px) {
+      .donate-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .donate-sidebar { order: -1; }
+      .amount-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-brand">SGPHS · Est. 1989</a>
+    <ul class="nav-links">
+      <li><a href="index.html#events">Events</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#membership">Membership</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="donate.html" class="btn btn-primary" style="padding:0.55rem 1.1rem;font-size:0.6rem;letter-spacing:0.18em;">Donate</a>
+      <a href="https://www.facebook.com/SanGorgonioPassHistoricalSociety/" class="nav-facebook" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Facebook
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Page hero ── -->
+  <header class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-label">Support the Society</span>
+      <h1 class="page-hero-title">Help Us<br><em>Preserve History</em></h1>
+      <p class="page-hero-sub">Your gift keeps the stories of the San Gorgonio Pass alive for the community and future generations.</p>
+    </div>
+  </header>
+
+  <!-- ── Main content ── -->
+  <main class="page-wrap">
+    <div class="donate-layout">
+
+      <!-- Left: Donation form -->
+      <div class="donate-form-section fade-in">
+
+        <!-- Frequency -->
+        <label class="form-label">Give once or monthly</label>
+        <div class="frequency-toggle" role="group" aria-label="Donation frequency">
+          <button class="freq-btn active" data-freq="once">One-Time</button>
+          <button class="freq-btn" data-freq="monthly">Monthly</button>
+        </div>
+
+        <!-- Amount -->
+        <label class="form-label">Select an amount</label>
+        <div class="amount-grid" role="group" aria-label="Preset donation amounts">
+          <button class="amount-btn" data-amount="10">$10<span>Member dues</span></button>
+          <button class="amount-btn active" data-amount="25">$25<span>Popular</span></button>
+          <button class="amount-btn" data-amount="50">$50<span>Supporter</span></button>
+          <button class="amount-btn" data-amount="100">$100<span>Patron</span></button>
+        </div>
+
+        <div class="custom-amount-wrap">
+          <span class="custom-amount-prefix">$</span>
+          <input
+            class="custom-amount-input"
+            type="number"
+            id="customAmount"
+            placeholder="Other amount"
+            min="1"
+            aria-label="Custom donation amount"
+          >
+        </div>
+
+        <!-- Payment method -->
+        <label class="form-label">Payment method</label>
+        <div class="payment-methods">
+          <div class="payment-method active" data-method="check">
+            <div class="payment-method-radio"></div>
+            <div>
+              <p class="payment-method-label">Mail a Check</p>
+              <p class="payment-method-desc">Send a check payable to the San Gorgonio Pass Historical Society. No fees, 100% of your gift goes to the Society.</p>
+            </div>
+          </div>
+          <div class="payment-method" data-method="online">
+            <div class="payment-method-radio"></div>
+            <div>
+              <p class="payment-method-label">Online Payment</p>
+              <p class="payment-method-desc">Pay by card or PayPal. Online payment processing coming soon — please use check or contact us in the meantime.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Check instructions -->
+        <div class="mail-instructions visible" id="mailInstructions">
+          <span class="form-label" style="margin-bottom:0.4rem;">Mail your check to</span>
+          <p class="mail-address">
+            San Gorgonio Pass Historical Society<br>
+            P.O. Box 331<br>
+            Beaumont, CA 92223
+          </p>
+          <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--text-muted);margin-top:1rem;">
+            Make checks payable to <em>San Gorgonio Pass Historical Society</em>. You may also pay in person at any of our meetings or events.
+          </p>
+        </div>
+
+        <!-- Online placeholder -->
+        <div class="online-placeholder" id="onlinePlaceholder">
+          <p>Online payment processing is coming soon. In the meantime, please mail a check or <a href="index.html#contact" style="color:var(--accent-light);">contact us</a> directly.</p>
+        </div>
+
+        <a href="index.html#contact" class="btn btn-primary donate-submit" id="donateBtn">
+          Send Us a Note About Your Gift
+        </a>
+
+        <p style="font-family:var(--font-body);font-size:0.82rem;color:var(--text-faint);margin-top:1rem;line-height:1.6;font-style:italic;">
+          The San Gorgonio Pass Historical Society is an all-volunteer nonprofit. All donations support our archiving, education, and community history programs.
+        </p>
+
+      </div><!-- /.donate-form-section -->
+
+      <!-- Right: Impact sidebar -->
+      <aside class="donate-sidebar fade-in" style="transition-delay:0.15s;">
+
+        <div class="sidebar-block">
+          <p class="sidebar-block-label">Your Impact</p>
+          <h2 class="sidebar-block-title">Every dollar preserves a story.</h2>
+          <p class="sidebar-block-text">Donations fund archive materials, exhibit supplies, event costs, and educational outreach — keeping pass-area history accessible to everyone, free of charge.</p>
+          <ul class="impact-list">
+            <li class="impact-item">
+              <span class="impact-amount">$10</span>
+              <span>Annual membership — keeps you connected to every event and meeting</span>
+            </li>
+            <li class="impact-item">
+              <span class="impact-amount">$25</span>
+              <span>Covers printing and materials for one community history presentation</span>
+            </li>
+            <li class="impact-item">
+              <span class="impact-amount">$50</span>
+              <span>Supports our presence at a local festival or parade exhibit</span>
+            </li>
+            <li class="impact-item">
+              <span class="impact-amount">$100</span>
+              <span>Patron-level — helps fund archival supplies and document preservation for the year</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-block">
+          <p class="sidebar-block-label">Founded 1989</p>
+          <h3 class="sidebar-block-title">All-volunteer, all community</h3>
+          <p class="sidebar-block-text">The Society is entirely volunteer-run. There are no paid staff — your donation goes directly to preserving and sharing the history of Banning, Beaumont, Cabazon, Cherry Valley, and San Timoteo Canyon.</p>
+        </div>
+
+        <div class="sidebar-block">
+          <p class="sidebar-block-label">Questions?</p>
+          <p class="sidebar-block-text" style="margin-bottom:1rem;">We'd love to hear from you about major gifts, in-kind donations, or archival contributions.</p>
+          <a href="index.html#contact" class="btn btn-secondary" style="width:100%;text-align:center;display:block;">Contact Us</a>
+        </div>
+
+      </aside>
+
+    </div><!-- /.donate-layout -->
+  </main>
+
+  <!-- ── Quote ── -->
+  <div class="quote-block fade-in">
+    <span class="quote-mark">"</span>
+    <p class="quote-text">Those who cannot remember the past are condemned to repeat it.</p>
+    <span class="quote-attr">George Santayana · The Life of Reason, 1905</span>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <p class="footer-text">© 2026 San Gorgonio Pass Historical Society · All rights reserved</p>
+    <nav class="footer-links">
+      <a href="index.html#events">Events</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#membership">Membership</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="https://www.facebook.com/SanGorgonioPassHistoricalSociety/" target="_blank" rel="noopener">Facebook</a>
+    </nav>
+  </footer>
+
+  <script>
+    // ── Theme ──
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById('themeToggle');
+    if (localStorage.getItem('sgphs-theme') === 'light') html.classList.add('light');
+    toggleBtn.addEventListener('click', () => {
+      html.classList.toggle('light');
+      localStorage.setItem('sgphs-theme', html.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // ── Amount buttons ──
+    const amountBtns = document.querySelectorAll('.amount-btn');
+    const customInput = document.getElementById('customAmount');
+
+    amountBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        amountBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        customInput.value = '';
+      });
+    });
+
+    customInput.addEventListener('input', () => {
+      if (customInput.value) {
+        amountBtns.forEach(b => b.classList.remove('active'));
+      }
+    });
+
+    // ── Frequency ──
+    document.querySelectorAll('.freq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // ── Payment method ──
+    const methodBtns = document.querySelectorAll('.payment-method');
+    const mailInstructions = document.getElementById('mailInstructions');
+    const onlinePlaceholder = document.getElementById('onlinePlaceholder');
+    const donateBtn = document.getElementById('donateBtn');
+
+    methodBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        methodBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const method = btn.dataset.method;
+        if (method === 'check') {
+          mailInstructions.classList.add('visible');
+          onlinePlaceholder.classList.remove('visible');
+          donateBtn.textContent = 'Send Us a Note About Your Gift';
+          donateBtn.href = 'index.html#contact';
+        } else {
+          mailInstructions.classList.remove('visible');
+          onlinePlaceholder.classList.add('visible');
+          donateBtn.textContent = 'Contact Us About Giving Online';
+          donateBtn.href = 'index.html#contact';
+        }
+      });
+    });
+
+    // ── Scroll fade-in ──
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      }),
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
