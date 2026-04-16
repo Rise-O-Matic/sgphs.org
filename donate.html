@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -628,6 +628,7 @@
     <a href="index.html" class="nav-brand">SGPHS · Est. 1989</a>
     <ul class="nav-links">
       <li><a href="index.html#events">Events</a></li>
+      <li><a href="timeline.html">Timeline</a></li>
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#membership">Membership</a></li>
       <li><a href="index.html#contact">Contact</a></li>
@@ -804,7 +805,7 @@
     // ── Theme ──
     const html = document.documentElement;
     const toggleBtn = document.getElementById('themeToggle');
-    if (localStorage.getItem('sgphs-theme') === 'light') html.classList.add('light');
+    if (localStorage.getItem('sgphs-theme') === 'dark') html.classList.remove('light');
     toggleBtn.addEventListener('click', () => {
       html.classList.toggle('light');
       localStorage.setItem('sgphs-theme', html.classList.contains('light') ? 'light' : 'dark');

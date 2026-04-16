@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -824,6 +824,7 @@
     <a href="#" class="nav-brand">SGPHS · Est. 1989</a>
     <ul class="nav-links">
       <li><a href="#events">Events</a></li>
+      <li><a href="timeline.html">Timeline</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#membership">Membership</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -1133,6 +1134,7 @@
     <p class="footer-text">© 2026 San Gorgonio Pass Historical Society · All rights reserved</p>
     <nav class="footer-links">
       <a href="#events">Events</a>
+      <a href="timeline.html">Timeline</a>
       <a href="#about">About</a>
       <a href="#membership">Membership</a>
       <a href="#contact">Contact</a>
@@ -1146,9 +1148,7 @@
     const toggleBtn = document.getElementById('themeToggle');
 
     // Restore saved preference, or default to dark
-    if (localStorage.getItem('sgphs-theme') === 'light') {
-      html.classList.add('light');
-    }
+    if (localStorage.getItem('sgphs-theme') === 'dark') html.classList.remove('light');
 
     toggleBtn.addEventListener('click', () => {
       html.classList.toggle('light');

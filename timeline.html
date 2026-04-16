@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historical Timeline · San Gorgonio Pass Historical Society</title>
+  <meta name="description" content="A photographic and documentary timeline of Beaumont and the San Gorgonio Pass, drawn from the SGPHS historical photo archive — from the 1880s to the present.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0f0c09;
+      --bg-surface:   #1a1510;
+      --bg-card:      #221c14;
+      --bg-card-2:    #2a2318;
+      --text:         #ede1ca;
+      --text-muted:   #8a7c6a;
+      --text-faint:   #4a4035;
+      --accent:       #c8912a;
+      --accent-light: #e2b45e;
+      --accent-faint: rgba(200, 145, 42, 0.12);
+      --rule:         #342a1e;
+      --rule-accent:  rgba(200, 145, 42, 0.35);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-label:   'Cinzel', 'Times New Roman', serif;
+      --font-body:    'EB Garamond', Georgia, serif;
+    }
+
+    html.light {
+      --bg:           #f5ede0;
+      --bg-surface:   #ede1ce;
+      --bg-card:      #e6d4b8;
+      --bg-card-2:    #ddc9a8;
+      --text:         #1a1208;
+      --text-muted:   #5a4830;
+      --text-faint:   #a89070;
+      --accent:       #8b5a14;
+      --accent-light: #a87030;
+      --accent-faint: rgba(139, 90, 20, 0.1);
+      --rule:         #cdb898;
+      --rule-accent:  rgba(139, 90, 20, 0.3);
+    }
+    html.light body::before { opacity: 0.2; }
+    html.light .site-nav { background: rgba(245, 237, 224, 0.94); }
+    /* Hero always overlays a photo — keep overlay dark enough for text in both modes */
+    html.light .page-hero-bg {
+      filter: sepia(28%) contrast(0.9) brightness(0.72);
+    }
+    html.light .page-hero::after {
+      background: linear-gradient(to bottom, rgba(15,12,9,0.08) 0%, rgba(15,12,9,0.80) 100%);
+    }
+    html.light .page-hero-title { color: #f0e4ce; }
+    html.light .page-hero-title em { color: #e2b45e; }
+    html.light .page-hero-sub { color: rgba(240, 228, 206, 0.75); }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.45;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      background: rgba(15, 12, 9, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      transition: border-bottom-color 0.3s;
+    }
+    .nav-brand {
+      font-family: var(--font-label);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-label);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] { color: var(--accent-light); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-facebook {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-label);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-facebook:hover { color: var(--accent-light); }
+    .nav-facebook svg { width: 14px; height: 14px; fill: currentColor; }
+    .btn {
+      font-family: var(--font-label);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.75rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.25s;
+    }
+    .btn-primary { background: var(--accent); color: var(--bg); }
+    .btn-primary:hover { background: var(--accent-light); }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--rule-accent);
+      color: var(--text-muted);
+      cursor: pointer;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .theme-toggle svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    html.light .icon-sun { display: block; }
+    html.light .icon-moon { display: none; }
+
+    /* ── Page Hero ── */
+    .page-hero {
+      position: relative;
+      padding-top: 60px;
+      min-height: 48vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://img1.wsimg.com/isteam/ip/d7a1e7b1-0c5a-4805-9a4b-a6013d889e64/blob-0006.png/:/rs=w:1600,cg:true');
+      background-size: cover;
+      background-position: center 25%;
+      filter: sepia(55%) contrast(0.82) brightness(0.5);
+      transform: scale(1.02);
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(15,12,9,0.2) 0%, rgba(15,12,9,0.95) 100%);
+    }
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+      max-width: 860px;
+    }
+    .page-hero-label {
+      font-family: var(--font-label);
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      color: var(--accent);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .page-hero-title {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+      line-height: 1.0;
+      color: var(--text);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+    .page-hero-title em {
+      font-style: italic;
+      color: var(--accent-light);
+    }
+    .page-hero-sub {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      font-style: italic;
+      color: rgba(237, 225, 202, 0.65);
+      margin-top: 1.25rem;
+      max-width: 560px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── Timeline wrapper ── */
+    .timeline-wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: clamp(3rem, 7vw, 6rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vw, 8rem);
+    }
+
+    /* ── Methodology / Legend strip ── */
+    .tl-preamble {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 0;
+    }
+    .tl-preamble-note {
+      flex: 1;
+      min-width: 260px;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.7;
+    }
+    .tl-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      flex-shrink: 0;
+    }
+    .tl-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .tl-legend-mark {
+      font-family: var(--font-label);
+      font-size: 0.52rem;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      width: 20px;
+      text-align: center;
+    }
+    .tl-legend-mark.est { color: var(--text-muted); }
+    .tl-legend-text {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ── Era separator ── */
+    .tl-era {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2.5rem;
+      align-items: end;
+      padding: 3.5rem 0 1rem;
+    }
+    .tl-era-decade {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 9vw, 7rem);
+      font-weight: 300;
+      color: var(--accent);
+      opacity: 0.18;
+      line-height: 1;
+      text-align: right;
+      letter-spacing: -0.04em;
+    }
+    .tl-era-info {
+      padding-bottom: 0.15rem;
+      border-bottom: 1px solid var(--rule-accent);
+    }
+    .tl-era-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2.8vw, 1.85rem);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .tl-era-subtitle {
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.3rem;
+    }
+
+    /* ── Timeline entry ── */
+    .tl-entry {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2.5rem;
+      padding: 1.8rem 0;
+      border-top: 1px solid var(--rule);
+      align-items: start;
+    }
+    .tl-entry:last-child { border-bottom: 1px solid var(--rule); }
+
+    /* Year column */
+    .tl-year-col {
+      text-align: right;
+      padding-top: 0.15rem;
+      position: relative;
+    }
+    .tl-year-col::after {
+      content: '';
+      position: absolute;
+      top: 0.7rem;
+      left: calc(100% + 2.5rem / 2);
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--rule-accent);
+      border: 1px solid var(--bg);
+    }
+    .tl-entry[data-confidence="confirmed"] .tl-year-col::after {
+      background: var(--accent);
+      width: 9px;
+      height: 9px;
+    }
+    .tl-year {
+      font-family: var(--font-label);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      line-height: 1.5;
+      display: block;
+    }
+    .tl-entry[data-confidence="estimated"] .tl-year {
+      color: var(--text-muted);
+    }
+    .tl-confidence-badge {
+      font-family: var(--font-label);
+      font-size: 0.48rem;
+      letter-spacing: 0.16em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      display: block;
+      margin-top: 0.25rem;
+    }
+    .tl-entry[data-confidence="confirmed"] .tl-confidence-badge {
+      color: var(--accent);
+      opacity: 0.6;
+    }
+
+    /* Content column */
+    .tl-content { }
+    .tl-subject {
+      font-family: var(--font-label);
+      font-size: 0.52rem;
+      letter-spacing: 0.2em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .tl-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+    .tl-body {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.78;
+    }
+    .tl-source {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-top: 0.7rem;
+    }
+    .tl-source-label {
+      font-family: var(--font-label);
+      font-size: 0.48rem;
+      letter-spacing: 0.18em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .tl-source-text {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--text-faint);
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    /* Vertical connector line */
+    .tl-entries {
+      position: relative;
+    }
+    .tl-entries::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: calc(160px + 2.5rem / 2);
+      transform: translateX(-50%);
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--rule) 3%, var(--rule) 97%, transparent);
+    }
+
+    /* ── Photo thumbnail ── */
+    .tl-thumb {
+      float: right;
+      width: 210px;
+      margin: 0 0 1rem 1.75rem;
+      flex-shrink: 0;
+      clear: right;
+    }
+    .tl-thumb img {
+      width: 100%;
+      height: 148px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: sepia(38%) contrast(0.88) brightness(0.9);
+      transition: filter 0.4s ease;
+    }
+    .tl-entry:hover .tl-thumb img {
+      filter: sepia(18%) contrast(0.92) brightness(0.95);
+    }
+    .tl-thumb figcaption {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-style: italic;
+      color: var(--text-faint);
+      line-height: 1.4;
+      margin-top: 0.4rem;
+      padding-top: 0.4rem;
+      border-top: 1px solid var(--rule);
+    }
+    .tl-content::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+    @media (max-width: 860px) {
+      .tl-thumb {
+        float: none;
+        width: 100%;
+        margin: 0 0 1rem 0;
+      }
+      .tl-thumb img { height: 200px; }
+    }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(6, 4, 2, 0.94);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+      padding: 2rem;
+      cursor: zoom-out;
+    }
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lightbox-inner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: default;
+      max-width: min(92vw, 1100px);
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -2.75rem;
+      right: 0;
+      background: none;
+      border: 1px solid var(--rule-accent);
+      color: var(--text-muted);
+      cursor: pointer;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-label);
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .lightbox-close:hover { border-color: var(--accent); color: var(--accent); }
+    .lightbox-img {
+      display: block;
+      max-width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      filter: sepia(18%) contrast(0.93) brightness(0.96);
+      box-shadow: 0 8px 60px rgba(0,0,0,0.7);
+      transform: scale(0.97);
+      transition: transform 0.28s ease;
+    }
+    .lightbox.open .lightbox-img {
+      transform: scale(1);
+    }
+    .lightbox-caption {
+      margin-top: 1rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: rgba(237, 225, 202, 0.55);
+      font-style: italic;
+      text-align: center;
+      line-height: 1.5;
+    }
+    /* Clickable thumbnail cue */
+    .tl-thumb img {
+      cursor: zoom-in;
+    }
+    .tl-thumb img:hover {
+      filter: sepia(18%) contrast(0.94) brightness(1.0);
+    }
+
+    /* fade-in */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── Footer ── */
+    .site-footer {
+      background: var(--bg);
+      border-top: 1px solid var(--rule);
+      padding: 2.5rem clamp(1.5rem, 5vw, 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-text {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      color: var(--text-faint);
+      text-transform: uppercase;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      font-family: var(--font-label);
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      color: var(--text-faint);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+      .tl-era, .tl-entry {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+      .tl-era { gap: 0; }
+      .tl-era-decade { text-align: left; font-size: 3rem; opacity: 0.12; }
+      .tl-year-col { text-align: left; }
+      .tl-year-col::after { display: none; }
+      .tl-entries::before { display: none; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav class="site-nav" id="siteNav">
+    <a href="index.html" class="nav-brand">SGPHS · Est. 1989</a>
+    <ul class="nav-links">
+      <li><a href="index.html#events">Events</a></li>
+      <li><a href="timeline.html" aria-current="page">Timeline</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#membership">Membership</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="donate.html" class="btn btn-primary" style="padding:0.55rem 1.1rem;font-size:0.6rem;letter-spacing:0.18em;">Donate</a>
+      <a href="https://www.facebook.com/SanGorgonioPassHistoricalSociety/" class="nav-facebook" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Facebook
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Page Hero ── -->
+  <header class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-label">Beaumont & the San Gorgonio Pass</span>
+      <h1 class="page-hero-title">A Chronicle<br><em>in Photographs</em></h1>
+      <p class="page-hero-sub">Dated and documented moments from the archive — from the founding era through the present day.</p>
+    </div>
+  </header>
+
+  <!-- ── Timeline ── -->
+  <main class="timeline-wrap">
+
+    <!-- Preamble -->
+    <div class="tl-preamble fade-in">
+      <p class="tl-preamble-note">
+        Dates are drawn from filename annotations, publication records, postmarks, yearbook inscriptions, and newspaper mastheads. Where no explicit date exists, an estimated range is given based on photographic format, clothing, vehicles, architectural context, and comparison with confirmed photographs. Estimated dates are marked with a dashed indicator.
+      </p>
+      <div class="tl-legend">
+        <div class="tl-legend-item">
+          <span class="tl-legend-mark">●</span>
+          <span class="tl-legend-text">Date confirmed by source</span>
+        </div>
+        <div class="tl-legend-item">
+          <span class="tl-legend-mark est">○</span>
+          <span class="tl-legend-text">Date estimated from evidence</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ ERA 1 -->
+    <div class="tl-era fade-in">
+      <div class="tl-era-decade">1880s</div>
+      <div class="tl-era-info">
+        <h2 class="tl-era-title">The Founding Era</h2>
+        <p class="tl-era-subtitle">A frontier resort town takes shape at the gateway of the San Gorgonio Pass</p>
+      </div>
+    </div>
+
+    <div class="tl-entries">
+
+      <div class="tl-entry fade-in" data-confidence="estimated">
+        <div class="tl-year-col">
+          <span class="tl-year">c. 1885–1895</span>
+          <span class="tl-confidence-badge">Estimated</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/egan-avenue-early-days.jpg" alt="Egan Avenue very early days" loading="lazy">
+            <figcaption>Egan Ave., very early days — Beaumont Library District</figcaption>
+          </figure>
+          <p class="tl-subject">Egan Avenue</p>
+          <h3 class="tl-title">Egan Avenue in Its Earliest Days</h3>
+          <p class="tl-body">George C. Egan, for whom the street was named, surveyed and platted Beaumont with its distinctive diagonal street grid. These earliest street-view photographs show a frontier commercial strip with unpaved roads, wooden storefronts, horse-drawn transport, and open irrigation ditches. The photographic print quality — albumen or early gelatin silver — and the complete absence of automobiles or electric infrastructure place this scene no later than the mid-1890s. Visual comparison with the confirmed 1907 postcard shows significantly less commercial development, suggesting a date in the late 1880s to early 1890s.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Beaumont Library District</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1887–1888</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/hotel-beaumont-1888.jpg" alt="Hotel Beaumont, 1888" loading="lazy">
+            <figcaption>Hotel Beaumont, 1888 — Beaumont Library District</figcaption>
+          </figure>
+          <p class="tl-subject">Hotel Beaumont</p>
+          <h3 class="tl-title">Hotel Beaumont Opens</h3>
+          <p class="tl-body">The grand Hotel Beaumont — a magnificent three-story Queen Anne Victorian resort with wraparound porches, twin turrets, and elaborate ornamental woodwork — opened in 1887–1888 and immediately established Beaumont as a destination for wealthy travelers seeking California's mild inland climate. A large-format photograph dated 1888 shows the hotel standing amid completely undeveloped land, with the San Bernardino range visible on the horizon and guests arriving by horse and carriage. A second undated photograph, showing the same structure with the identical surrounding landscape, is estimated to the same 1888–1895 period by visual analysis of women's dress (full Victorian/bustle silhouette, declining after ~1895) and the absence of any neighboring buildings.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Beaumont Library District · filename: "Hotel Beaumont 1888.jpg"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1890–1893</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/wellwood-school-1890.jpg" alt="Wellwood School first building, 1890–1893" loading="lazy">
+            <figcaption>Wellwood School, first building, 1890–1893 — Beaumont Library District</figcaption>
+          </figure>
+          <p class="tl-subject">Wellwood School</p>
+          <h3 class="tl-title">Wellwood School's First Building</h3>
+          <p class="tl-body">The first Wellwood School building served the growing Beaumont community from approximately 1890 to 1893 before being replaced. A single-story frame schoolhouse, it represents the earliest documented investment in public education for the city. The photograph is held by the Beaumont Library District.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Beaumont Library District · filename: "Wellwood school old building 1890-1893"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">c. 1890s</span>
+          <span class="tl-confidence-badge">Confirmed Range</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/railroad-workers-1890s.jpg" alt="Railroad workers at Beaumont Train Depot, 1890s" loading="lazy">
+            <figcaption>Railroad workers at Beaumont Train Depot, 1890s — Banning Library District</figcaption>
+          </figure>
+          <p class="tl-subject">Beaumont Train Depot · Railroad Workers</p>
+          <h3 class="tl-title">Steam Locomotives and Their Crews at the Depot</h3>
+          <p class="tl-body">Railroad workers pose alongside steam locomotives at the Beaumont Train Depot. The Southern Pacific line through the San Gorgonio Pass was maintained by a racially diverse workforce — including many Mexican and Mexican-American section laborers — who built the tracks, operated the roundhouse, and sustained the infrastructure that defined the city. The Banning Library District holds this photograph, which is annotated to the 1890s.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Banning Library District · filename: "railroad workers with steam locomotives at Beaumont Train Depot 1890s"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">c. 1890s</span>
+          <span class="tl-confidence-badge">Confirmed Range</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/summit-house-1890s.jpg" alt="Summit House, Banning, 1890s" loading="lazy">
+            <figcaption>Summit House, Banning, 1890s — Beaumont Library District</figcaption>
+          </figure>
+          <p class="tl-subject">Summit House · Banning</p>
+          <h3 class="tl-title">Summit House Stage Stop</h3>
+          <p class="tl-body">The Summit House in Banning served as a waystation for travelers navigating the San Gorgonio Pass in the era before and during the early railroad period. Two photographs annotated to the 1890s document the structure's character as a stage-stop waypoint in the pass communities. A third image from Calisphere, dated 1911, shows the building in its later years.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Beaumont Library District · filename: "Summit House Banning Library District 1890s"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">c. 1890s</span>
+          <span class="tl-confidence-badge">Confirmed Range</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/post-office-1890s.jpg" alt="Beaumont Post Office at Fifth and Egan Ave., 1890s" loading="lazy">
+            <figcaption>Post Office at Fifth &amp; Egan Ave., 1890s — Beaumont Library District</figcaption>
+          </figure>
+          <p class="tl-subject">Beaumont Post Office</p>
+          <h3 class="tl-title">Post Office at the Corner of Fifth & Egan</h3>
+          <p class="tl-body">A photograph annotated to the 1890s shows the Beaumont Post Office occupying the northeast corner of Fifth Street and Egan Avenue — the commercial heart of the young city. This intersection, defined by the post office on one corner and later the WCTU Fountain and Bank of Beaumont on others, remained the symbolic center of downtown Beaumont for generations.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Beaumont Library District · filename: "Beaumont Post Office to left at intersection of Egan Ave. and Fifth St. 1890s"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">c. 1900</span>
+          <span class="tl-confidence-badge">Confirmed Approx.</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/eucalyptus-1900.jpg" alt="Eucalyptus trees on Beaumont Avenue, about 1900" loading="lazy">
+            <figcaption>Eucalyptus trees, Beaumont Avenue, c. 1900 — Beaumont Library District</figcaption>
+          </figure>
+          <p class="tl-subject">Eucalyptus Trees · Beaumont Avenue</p>
+          <h3 class="tl-title">Eucalyptus Trees Planted on Beaumont Avenue</h3>
+          <p class="tl-body">Eucalyptus trees were planted along Beaumont Avenue in a beautification effort around the turn of the century — a late-Victorian civic improvement common across Southern California. A postcard looking north on Beaumont Avenue documents the avenue beginning to take on the tree-lined character it would hold for decades. A later color postcard shows the same corridor after the trees had matured.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Beaumont Library District · filename: "Eucalyptus trees Beaumont Avenue about 1900"</span></div>
+        </div>
+      </div>
+
+    </div><!-- /.tl-entries era 1 -->
+
+    <!-- ═══════════════════════════════════════════ ERA 2 -->
+    <div class="tl-era fade-in">
+      <div class="tl-era-decade">1907–19</div>
+      <div class="tl-era-info">
+        <h2 class="tl-era-title">The Town Takes Shape</h2>
+        <p class="tl-era-subtitle">A commercial district matures, institutions are founded, and the Cherry Festival begins</p>
+      </div>
+    </div>
+
+    <div class="tl-entries">
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1907</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/egan-avenue-1907.jpg" alt="Egan Avenue looking south, 1907" loading="lazy">
+            <figcaption>Egan Ave. looking south, 1907 — Beaumont Library District</figcaption>
+          </figure>
+          <p class="tl-subject">Egan Avenue</p>
+          <h3 class="tl-title">Egan Avenue Looking South — Postcard</h3>
+          <p class="tl-body">A postcard view of Egan Avenue looking south, dated 1907, shows a substantially more established commercial block than the early street-view photographs: two-story brick and wood buildings, a graded roadway, and growing pedestrian activity. The postcard was held by the Beaumont Library District.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Beaumont Library District · filename: "Egan Ave looking south 1907"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">April 30, 1908</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/gateway-gazette-1908.jpg" alt="Gateway Gazette, April 30, 1908" loading="lazy">
+            <figcaption>Gateway Gazette, April 30, 1908</figcaption>
+          </figure>
+          <p class="tl-subject">Gateway Gazette</p>
+          <h3 class="tl-title">The Gateway Gazette</h3>
+          <p class="tl-body">The Gateway Gazette, one of Beaumont's local newspapers, published an issue on April 30, 1908. The paper's name celebrated Beaumont's geographic role as the gateway between the Inland Empire and the Mojave Desert — a position reinforced by the Southern Pacific Railroad and, a generation later, by the automobile highways of Routes 60, 70, and 99.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Gateway Gazette · filename: "Gateway Gazette April 30, 1908"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1908</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/edgar-canyon-well-1908.jpg" alt="Water drilling in Edgar Canyon, 1908" loading="lazy">
+            <figcaption>Water well drilling, Edgar Canyon, 1908 — Beaumont Library District</figcaption>
+          </figure>
+          <p class="tl-subject">Beaumont Land &amp; Water Company</p>
+          <h3 class="tl-title">Water Well Drilling in Edgar Canyon</h3>
+          <p class="tl-body">The Beaumont Land and Water Company documented water well drilling operations and a public viewing of the flowing well in Edgar Canyon in 1908. Water rights and reliable irrigation were central to the agricultural economy of the pass — the apple and cherry orchards that defined Beaumont's identity depended entirely on controlled access to groundwater.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Beaumont Library District · filename: "Water drilling Edgar Canyon 1908"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">March 1909</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/beaumont-depot-1909.png" alt="Beaumont Train Depot, 1909" loading="lazy">
+            <figcaption>Beaumont Depot, 1909 — Tyrrell Historical Library / Calisphere</figcaption>
+          </figure>
+          <p class="tl-subject">Southern Pacific Railroad · Train Depot</p>
+          <h3 class="tl-title">S.P. Agricultural Demonstration Train Visits Beaumont</h3>
+          <p class="tl-body">The Southern Pacific Railroad operated an Agricultural and Horticultural Demonstration Train that stopped in Beaumont in March 1909 — a traveling exhibit designed to educate farmers along the line about modern growing techniques. The visit reflects both the importance of the rail connection to the pass and Beaumont's active agricultural identity in the early 20th century. A separate photograph from the Tyrrell Historical Library, also dated 1909, documents the Beaumont Train Depot itself.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Calisphere · Tyrrell Historical Library Digital Collections</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">August 18, 1909</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/hotel-fire-1909.jpg" alt="Beaumont Hotel fire — Los Angeles Herald, August 18, 1909" loading="lazy">
+            <figcaption>Beaumont Hotel fire — L.A. Herald, August 18, 1909</figcaption>
+          </figure>
+          <p class="tl-subject">Hotel Beaumont</p>
+          <h3 class="tl-title">Hotel Beaumont Destroyed by Fire</h3>
+          <p class="tl-body">The Hotel Beaumont burned to the ground. The Los Angeles Herald reported the fire on August 18, 1909, marking the end of Beaumont's first era as a fashionable Victorian resort destination. The loss of the grand structure was a significant blow, though the city continued to grow around its railroad and agricultural economy. The hotel was later renamed Hotel Edinburgh before its destruction.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Los Angeles Herald, August 18, 1909 · filename: "Beaumont Hotel fire Los Angeles Herald, August 18 1909"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1910</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/wctu-fountain-1910.jpg" alt="WCTU Fountain dedication, December 25 1910" loading="lazy">
+            <figcaption>WCTU Fountain dedication, Dec. 25, 1910 — Leslie A. Rios III Postcard Collection</figcaption>
+          </figure>
+          <p class="tl-subject">Fifth Street · WCTU Fountain</p>
+          <h3 class="tl-title">Fifth Street Photographed &amp; the WCTU Fountain Dedicated</h3>
+          <p class="tl-body">Two significant records survive from 1910: a street-level photograph of Fifth Street looking east toward Egan Avenue, showing a commercial block in transition from wooden to brick construction with early automobiles alongside horse-drawn wagons; and — on Christmas Day, December 25, 1910 — the public dedication of the Women's Christian Temperance Union Fountain at Fifth and Egan. A postcard of the dedication ceremony is held in the Leslie A. Rios III collection. The ornamental drinking fountain, adjacent to the Post Office, became a landmark of the intersection for decades.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Leslie A. Rios III Postcard Collection · Beaumont Library District</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1911</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/laura-may-stewart-1911.jpg" alt="Laura May Stewart, 1911" loading="lazy">
+            <figcaption>Laura May Stewart, 1911 — Stewart family collection</figcaption>
+          </figure>
+          <p class="tl-subject">Laura May Stewart · Summit House · Stewart Ranch</p>
+          <h3 class="tl-title">Laura May Stewart at the Ranch; Summit House Documented</h3>
+          <p class="tl-body">Three portraits of Laura May Stewart — in chaps, on horseback, and in a formal pose — are dated 1911 and taken at Stewart Ranch. Stewart, the daughter of Reznor Stewart, would go on to become the first Cherry Festival Queen in 1919. In the same year, Calisphere photographers documented the Summit House stage stop in Banning.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Stewart family collection · Calisphere</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1915</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/egan-avenue-1915.jpg" alt="Egan Avenue looking south, postcard postmarked 1915" loading="lazy">
+            <figcaption>Egan Ave. looking south, postmarked 1915 — eBay postcard collection</figcaption>
+          </figure>
+          <p class="tl-subject">Egan Avenue</p>
+          <h3 class="tl-title">Egan Avenue Postcard, Postmarked 1915</h3>
+          <p class="tl-body">A postcard view of Egan Avenue, postmarked 1915 and sourced from a collector via eBay, shows the street in a mature commercial state — brick facades, visible utility infrastructure, and mixed horse-and-automobile traffic. Comparing this image with the 1907 postcard of the same view reveals eight years of substantial commercial development.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">eBay postcard collection · filename: "Egan Ave looking south postcard postmarked 1915"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1919</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/cherry-festival-queen-1919.jpg" alt="Laura May Stewart, first Cherry Festival Queen, 1919" loading="lazy">
+            <figcaption>Laura May Stewart, first Cherry Festival Queen, 1919</figcaption>
+          </figure>
+          <p class="tl-subject">Cherry Festival · Laura May Stewart</p>
+          <h3 class="tl-title">First Cherry Festival Queen</h3>
+          <p class="tl-body">Laura May Stewart was crowned the first Cherry Festival Queen in 1919, photographed in the center of the back seat of an automobile for the occasion. The Cherry Festival — celebrating Beaumont's apple and cherry orchard economy — became the defining annual civic tradition of the city, continuing in unbroken succession into the present day. The 2026 Cherry Festival marks more than a century of this tradition.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Stewart family collection</span></div>
+        </div>
+      </div>
+
+    </div><!-- /.tl-entries era 2 -->
+
+    <!-- ═══════════════════════════════════════════ ERA 3 -->
+    <div class="tl-era fade-in">
+      <div class="tl-era-decade">1920s–30s</div>
+      <div class="tl-era-info">
+        <h2 class="tl-era-title">Between the Wars</h2>
+        <p class="tl-era-subtitle">New schools, a growing downtown, and the Depression-era city</p>
+      </div>
+    </div>
+
+    <div class="tl-entries">
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">c. 1916–17</span>
+          <span class="tl-confidence-badge">Confirmed Approx.</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/wellwood-school-1916.jpg" alt="Wellwood School, circa 1916–17" loading="lazy">
+            <figcaption>Wellwood School, c. 1916–17 — Beaumont Library District</figcaption>
+          </figure>
+          <p class="tl-subject">Wellwood School</p>
+          <h3 class="tl-title">Wellwood School — Transitional Building</h3>
+          <p class="tl-body">A photograph annotated "circa 1916–17" shows Wellwood School in its intermediate building, after the 1890s frame structure and before the 1921 construction. The image documents the school during a period of transition as Beaumont's population grew through the teens.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Beaumont Library District · filename: "Wellwood school old building circa 1916-17"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1921</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/wellwood-school-1921.jpg" alt="Wellwood School, soon after construction, 1921" loading="lazy">
+            <figcaption>Wellwood School, 1921 — Beaumont Library District</figcaption>
+          </figure>
+          <p class="tl-subject">Wellwood School</p>
+          <h3 class="tl-title">New Wellwood School Built</h3>
+          <p class="tl-body">A substantial new Wellwood School building was constructed in 1921. Two photographs from the Beaumont Library District show the new school shortly after its completion — a Mission Revival-influenced structure that would serve generations of Beaumont students. A 1971–72 kindergarten class photograph also survives in the archive, documenting the school a half-century into its use.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Beaumont Library District · filename: "Wellwood School soon after it was built in 1921"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1925</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/fifth-street-1925.jpg" alt="Fifth Street, Beaumont, 1925 — Frasher photograph" loading="lazy">
+            <figcaption>Fifth Street, 1925 — Frasher Photos</figcaption>
+          </figure>
+          <p class="tl-subject">Fifth Street Downtown</p>
+          <h3 class="tl-title">Fifth Street — Frasher Photograph</h3>
+          <p class="tl-body">Burton Frasher Sr., a celebrated photographer who documented Southern California's communities throughout the 1920s–1940s, photographed Fifth Street in Beaumont in 1925. The image — shared on Facebook in 2020 via the Clamshack community archive — shows a prosperous main street with established storefronts, parked Model T-era automobiles, telephone poles, and awnings: a city in its prime commercial moment between the wars.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Frasher Photos · via Clamshack / Facebook · filename: "fifth street 1925 frasher photo"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1930</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/beaumont-high-school-1930.jpg" alt="Beaumont High School, from the 1930 yearbook" loading="lazy">
+            <figcaption>Beaumont High School (now Civic Center), 1930 yearbook</figcaption>
+          </figure>
+          <p class="tl-subject">Beaumont High School</p>
+          <h3 class="tl-title">Beaumont High School — 1930 Yearbook</h3>
+          <p class="tl-body">The 1930 Beaumont High School yearbook includes a photograph of the school building — later converted to the Beaumont Civic Center — at the outset of the Depression decade. The campus would appear again in yearbooks through 1942 and into the postwar years, providing a longitudinal photographic record of one of the city's most important institutions.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">BHS Yearbook, 1930 · Beaumont Library District</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1930–1940</span>
+          <span class="tl-confidence-badge">Confirmed Range</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/first-christian-church-1930.jpg" alt="First Christian Church, 701 Egan Ave., 1930–1940" loading="lazy">
+            <figcaption>First Christian Church, 701 Egan Ave., 1930–1940</figcaption>
+          </figure>
+          <p class="tl-subject">First Christian Church · 701 Egan Ave.</p>
+          <h3 class="tl-title">First Christian Church Established on Egan Avenue</h3>
+          <p class="tl-body">The First Christian Church at 701 Egan Avenue was built or established in the 1930–1940 period. A photograph annotated to this range captures the building, while a separate image labeled "late 1950s" shows it in a later phase. The structure is still standing; a contemporary photograph was taken in May 2022.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">filename: "First Christian Church, 701 Egan Ave. 1930-1940"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">April 28, 1939</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/desert-sun-1939.jpg" alt="Desert Sun, April 28, 1939" loading="lazy">
+            <figcaption>Desert Sun, April 28, 1939 — via Facebook</figcaption>
+          </figure>
+          <p class="tl-subject">Old City Hall · 500 Grace Ave.</p>
+          <h3 class="tl-title">Desert Sun Documents Beaumont, 1939</h3>
+          <p class="tl-body">A photograph from the Desert Sun newspaper dated April 28, 1939 — shared on Facebook in December 2020 — provides a document of Beaumont civic life on the eve of World War II. The image is associated with Old City Hall at 500 Grace Avenue.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Desert Sun, April 28, 1939 · shared via Facebook Dec. 2020</span></div>
+        </div>
+      </div>
+
+    </div><!-- /.tl-entries era 3 -->
+
+    <!-- ═══════════════════════════════════════════ ERA 4 -->
+    <div class="tl-era fade-in">
+      <div class="tl-era-decade">1940s–50s</div>
+      <div class="tl-era-info">
+        <h2 class="tl-era-title">Wartime &amp; Postwar Beaumont</h2>
+        <p class="tl-era-subtitle">Railroad families, yearbook generations, and a new highway economy</p>
+      </div>
+    </div>
+
+    <div class="tl-entries">
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1940s</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/estrada-family-1940s.jpg" alt="Emeteria and Luis Estrada, 1940s" loading="lazy">
+            <figcaption>Emeteria and Luis Estrada, 1940s — Estrada family collection</figcaption>
+          </figure>
+          <p class="tl-subject">Luis Estrada · Railroad Workers · Mexican Families</p>
+          <h3 class="tl-title">The Estrada Family and Wartime Rail Workers at the Depot</h3>
+          <p class="tl-body">Emeteria and Luis Estrada, photographed together in the 1940s, represent the Mexican and Mexican-American families who built and maintained the Southern Pacific Railroad through the San Gorgonio Pass for generations. Luis Estrada worked for the SP for decades — his family photographed at meals inside the section house, and workers captured in multiple group portraits at the Beaumont depot. Women are documented among those who swept the tracks. A statue of Luis Estrada now stands at the California State Railroad Museum in Sacramento; a road in Beaumont was named in his honor, and its 20th anniversary was celebrated in 2021.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Estrada family collection · Leslie Rios collection</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1942–1950</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/beaumont-high-school-1942.jpg" alt="Beaumont High School, from the 1942 yearbook" loading="lazy">
+            <figcaption>BHS yearbook, 1942 — donated by Leslie Rios</figcaption>
+          </figure>
+          <p class="tl-subject">Beaumont High School</p>
+          <h3 class="tl-title">BHS Yearbooks — Wartime Through Postwar</h3>
+          <p class="tl-body">Yearbooks donated by Leslie Rios document student life at Beaumont High School across the war and postwar years. The 1942 yearbook captures the school during wartime; the 1946 volume includes a view of 6th Street; the 1949 yearbook shows the school band; and the 1950 editions document majorettes and a typing class — evidence of a thriving community institution through one of Beaumont's most formative decades. These yearbooks were shared with the Beaumont Library District.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">BHS Yearbooks 1942–1950 · donated by Leslie Rios · Beaumont Library District</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1947</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/cherry-parade-1947.jpg" alt="1947 Cherry Festival parade in front of the Beaumont Woman's Club" loading="lazy">
+            <figcaption>Cherry Festival parade, 1947 — Beaumont Library District</figcaption>
+          </figure>
+          <p class="tl-subject">Cherry Festival · Beaumont Woman's Club</p>
+          <h3 class="tl-title">Cherry Festival Parade at the Woman's Club</h3>
+          <p class="tl-body">A 1947 Cherry Festival parade passes in front of the Beaumont Woman's Club at 306 E. 6th Street. The Woman's Club building has hosted community gatherings, civic functions, and society meetings for decades — and remains the meeting place of the San Gorgonio Pass Historical Society today.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Beaumont Library District · filename: "1947 cherry parade in front of Beaumont Woman's Club"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">c. 1948</span>
+          <span class="tl-confidence-badge">Confirmed Approx.</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/sunset-plaza-hotel-1948.jpg" alt="Sunset Plaza Hotel, circa 1948" loading="lazy">
+            <figcaption>Sunset Plaza Hotel, c. 1948 — Calisphere</figcaption>
+          </figure>
+          <p class="tl-subject">Sunset Plaza Hotel</p>
+          <h3 class="tl-title">Sunset Plaza Hotel on Routes 60/70/99</h3>
+          <p class="tl-body">The Sunset Plaza Hotel, photographed circa 1948 and held by Calisphere, exemplifies Beaumont's mid-century role as a highway stop on U.S. Routes 60, 70, and 99 — the major arteries connecting Los Angeles to the desert and beyond. The postwar motel and roadside commercial culture transformed Sixth Street into a dense corridor of cafes, motels, and gas stations serving cross-country travelers.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Calisphere · filename: "sunset plaza hotel circa 1948"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1949–1950</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/fifth-street-1949.jpg" alt="Fifth Street looking west, 1949–50" loading="lazy">
+            <figcaption>Fifth Street looking west, 1949–50</figcaption>
+          </figure>
+          <p class="tl-subject">Fifth Street Downtown</p>
+          <h3 class="tl-title">Fifth Street Looking West — Postwar Era</h3>
+          <p class="tl-body">A photograph dated 1949–50 shows Fifth Street looking west from the intersection of Fifth and Grace Street — a postwar commercial view with storefront signage, parked automobiles, and the visual character of a prosperous California small city just before the suburban transformation of the 1950s and 1960s.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">filename: "Fifth Street, Beaumont, looking west from the intersection of Fifth and Grace Street 1949-50"</span></div>
+        </div>
+      </div>
+
+    </div><!-- /.tl-entries era 4 -->
+
+    <!-- ═══════════════════════════════════════════ ERA 5 -->
+    <div class="tl-era fade-in">
+      <div class="tl-era-decade">1950s–69</div>
+      <div class="tl-era-info">
+        <h2 class="tl-era-title">Mid-Century &amp; the Record-Gazette Years</h2>
+        <p class="tl-era-subtitle">The city documents itself — fire department, churches, and civic institutions in print</p>
+      </div>
+    </div>
+
+    <div class="tl-entries">
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">Late 1950s–Early 1960s</span>
+          <span class="tl-confidence-badge">Confirmed Range</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/fire-dept-1960.jpg" alt="Beaumont Volunteer Fire Department, late 1950s or early 1960s" loading="lazy">
+            <figcaption>Beaumont Volunteer Fire Dept., late 1950s–early 1960s</figcaption>
+          </figure>
+          <p class="tl-subject">Beaumont Fire Department</p>
+          <h3 class="tl-title">Beaumont Volunteer Fire Department — Early Era</h3>
+          <p class="tl-body">Multiple photographs document the Beaumont Volunteer Fire Department in the late 1950s and early 1960s: the department at 500 Grace Avenue, a group portrait with equipment, and a photograph with Fire Chief Clarence "Pappy" Lewis (left) and fireman Ray Samson (right) that is annotated to the early 1960s. These images capture the department in its volunteer-only era, before the city moved toward a professional staffing model.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Fire Department archive · Calisphere</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1960s</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/sunnyslope-cemetery-1960s.jpg" alt="Stewart Sunnyslope Cemetery gate dedication, 1960s" loading="lazy">
+            <figcaption>Sunnyslope Cemetery gate dedication, 1960s — Stewart family collection</figcaption>
+          </figure>
+          <p class="tl-subject">Stewart Sunnyslope Cemetery</p>
+          <h3 class="tl-title">Stewart Sunnyslope Cemetery Gate Dedicated</h3>
+          <p class="tl-body">A photograph annotated to the 1960s shows the Stewart Sunnyslope Cemetery gate dedication ceremony, with the Stewart family donating additional funds for the cemetery. The cemetery was established by the Stewart family — the same family as Laura May Stewart, the first Cherry Festival Queen — and remains one of the historic burial grounds of the pass area.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">filename: "Stewart Sunnyslope Cemetery gate and Stewart family donating more funds 1960s"</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">April 30, 1968</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/fire-chief-1968.jpg" alt="Beaumont Fire Department chief — Record-Gazette, April 30, 1968" loading="lazy">
+            <figcaption>Fire Dept. chief — Record-Gazette, April 30, 1968</figcaption>
+          </figure>
+          <p class="tl-subject">Record-Gazette</p>
+          <h3 class="tl-title">A Single Issue of the Record-Gazette Captures Three Institutions</h3>
+          <p class="tl-body">The April 30, 1968 edition of the Record-Gazette documented three distinct threads of civic Beaumont in a single issue: the Fire Department chief, the Presbyterian Church at 702 Euclid Avenue, and the Sunnyslope Cemetery. This newspaper has been a primary photographic source for the SGPHS archive, capturing community institutions that might otherwise go undocumented.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Record-Gazette, April 30, 1968</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">March 21, 1969</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/fire-station-1969.jpg" alt="Building Beaumont Fire Station on Maple Ave. — Record-Gazette, March 21, 1969" loading="lazy">
+            <figcaption>New fire station under construction, Maple Ave. — Record-Gazette, March 21, 1969</figcaption>
+          </figure>
+          <p class="tl-subject">Beaumont Fire Department</p>
+          <h3 class="tl-title">New Fire Station Under Construction on Maple Avenue</h3>
+          <p class="tl-body">The Record-Gazette of March 21, 1969 documented the construction of a new Beaumont Fire Station on Maple Avenue — marking the department's expansion beyond its long-standing home at 500 Grace Avenue. Two photographs from the newspaper issue show the construction in progress.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Record-Gazette, March 21, 1969</span></div>
+        </div>
+      </div>
+
+    </div><!-- /.tl-entries era 5 -->
+
+    <!-- ═══════════════════════════════════════════ ERA 6 -->
+    <div class="tl-era fade-in">
+      <div class="tl-era-decade">1970s–now</div>
+      <div class="tl-era-info">
+        <h2 class="tl-era-title">The Modern City</h2>
+        <p class="tl-era-subtitle">A professional fire department, centennial recognition, and ongoing preservation</p>
+      </div>
+    </div>
+
+    <div class="tl-entries">
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">1971–1978</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/beaumont-fire-dept-1971.png" alt="Beaumont City Fire Department, 1971" loading="lazy">
+            <figcaption>Beaumont City Fire Dept., 1971 — Calisphere</figcaption>
+          </figure>
+          <p class="tl-subject">Beaumont Fire Department</p>
+          <h3 class="tl-title">Beaumont City Fire Department — Growth and Change</h3>
+          <p class="tl-body">A rich photographic archive documents the fire department across the 1970s: the 1971 City Fire Department (Calisphere); a LaFrance fire engine in the Cherry Festival parade in the late 1970s; Engine 24; Scott DeForge and John McLaughlin photographed in 1976; the City Volunteer Fire Department in 1973; and the department badge from the same decade. The arc closes with the November 28, 1978 Record-Gazette article reporting the City Council's vote to contract fire services with the California Department of Forestry — a pivotal administrative change for the department.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Calisphere · Fire Department archive · Record-Gazette, November 28, 1978</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">November 12, 1987</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/mccoy-house-1987.jpg" alt="McCoy House — Community Advisor, November 12, 1987" loading="lazy">
+            <figcaption>McCoy House — Community Advisor, November 12, 1987</figcaption>
+          </figure>
+          <p class="tl-subject">McCoy House &amp; Lumberyard</p>
+          <h3 class="tl-title">McCoy House in the Community Advisor</h3>
+          <p class="tl-body">The Community Advisor of November 12, 1987 featured the McCoy House, one of Beaumont's significant historic residences. The McCoy property included a lumberyard that helped supply building materials to the growing city in the late 19th and early 20th centuries. A Google Street View image from 2018 documents the house in its present state.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Community Advisor, November 12, 1987</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">2012</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/centennial-2012.jpg" alt="Record-Gazette centennial coverage, November 23, 2012" loading="lazy">
+            <figcaption>Record-Gazette centennial coverage, November 23, 2012</figcaption>
+          </figure>
+          <p class="tl-subject">Beaumont Centennial</p>
+          <h3 class="tl-title">Beaumont's 100th Anniversary of Incorporation</h3>
+          <p class="tl-body">The Record-Gazette covered Beaumont's centennial — 100 years since its incorporation — in its November 23, 2012 issue. The occasion prompted the community to look back across a century of history: from the Hotel Beaumont and the first Cherry Festival through the railroad era, the wartime years, and the suburban transformation of the Inland Empire.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Record-Gazette, November 23, 2012</span></div>
+        </div>
+      </div>
+
+      <div class="tl-entry fade-in" data-confidence="confirmed">
+        <div class="tl-year-col">
+          <span class="tl-year">2018–2021</span>
+          <span class="tl-confidence-badge">Confirmed</span>
+        </div>
+        <div class="tl-content">
+          <figure class="tl-thumb">
+            <img src="images/timeline/estrada-road-2021.jpg" alt="Family celebrating 20 years of Luis Estrada Road, 2021" loading="lazy">
+            <figcaption>Luis Estrada Road 20th anniversary, 2021 — Estrada family</figcaption>
+          </figure>
+          <p class="tl-subject">Preservation &amp; Recognition</p>
+          <h3 class="tl-title">Ongoing Preservation Work and Community Recognition</h3>
+          <p class="tl-body">Recent years have brought renewed attention to Beaumont's multicultural heritage and historic fabric. Sacred Heart Barrio Church — the longtime parish of the city's Latino community — was documented in 2018. The Luis Estrada Road 20-year anniversary was celebrated in 2021 with family and community gathered at the sign. The Eyer House (photographed 2019), Bogart House (2020), McCoy House (2018), and other historic residences continue to be studied and documented by the Society. Summit School received a contemporary photograph in 2024. The archive grows.</p>
+          <div class="tl-source"><span class="tl-source-label">Source</span><span class="tl-source-text">Historical Society collections · 2018–2024</span></div>
+        </div>
+      </div>
+
+    </div><!-- /.tl-entries era 6 -->
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <p class="footer-text">© 2026 San Gorgonio Pass Historical Society · All rights reserved</p>
+    <nav class="footer-links">
+      <a href="index.html#events">Events</a>
+      <a href="timeline.html">Timeline</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#membership">Membership</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="https://www.facebook.com/SanGorgonioPassHistoricalSociety/" target="_blank" rel="noopener">Facebook</a>
+    </nav>
+  </footer>
+
+  <!-- ── Lightbox ── -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close photo">✕</button>
+      <img class="lightbox-img" id="lightboxImg" src="" alt="">
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+  </div>
+
+  <script>
+    // ── Theme ──
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById('themeToggle');
+    if (localStorage.getItem('sgphs-theme') === 'dark') html.classList.remove('light');
+    toggleBtn.addEventListener('click', () => {
+      html.classList.toggle('light');
+      localStorage.setItem('sgphs-theme', html.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // ── Nav scroll accent ──
+    const nav = document.getElementById('siteNav');
+    window.addEventListener('scroll', () => {
+      nav.style.borderBottomColor = window.scrollY > 20
+        ? 'rgba(200, 145, 42, 0.2)'
+        : 'var(--rule)';
+    }, { passive: true });
+
+    // ── Scroll fade-in ──
+    const observer = new IntersectionObserver(
+      entries => entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), 0);
+          observer.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.06, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    document.querySelectorAll('.fade-in').forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 4) * 60}ms`;
+      observer.observe(el);
+    });
+
+    // ── Lightbox ──
+    const lightbox    = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCap = document.getElementById('lightboxCaption');
+    const lbClose     = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt, caption) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      lightboxCap.textContent = caption;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      lbClose.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      // clear src after transition so old image doesn't flash on next open
+      setTimeout(() => { if (!lightbox.classList.contains('open')) lightboxImg.src = ''; }, 300);
+    }
+
+    document.querySelectorAll('.tl-thumb img').forEach(img => {
+      img.addEventListener('click', () => {
+        const caption = img.closest('figure')?.querySelector('figcaption')?.textContent || img.alt;
+        openLightbox(img.src, img.alt, caption);
+      });
+    });
+
+    // Close on backdrop click
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    lbClose.addEventListener('click', closeLightbox);
+
+    // Close on Escape
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>
